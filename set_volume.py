@@ -5,6 +5,12 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 from comtypes.client import CreateObject
 
 def set_volume(volume_level):
+    """
+    立即设置主音量到指定级别。
+
+    参数:
+    - volume_level (float): 音量级别，范围为0到1。
+    """
     devices = AudioUtilities.GetSpeakers()
     interface = devices.Activate(
         IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
@@ -12,6 +18,15 @@ def set_volume(volume_level):
     volume.SetMasterVolumeLevelScalar(volume_level, None)
 
 def gradually_increase_volume(initial_volume, target_volume, duration, increment):
+    """
+    逐渐增加音量，从初始音量到目标音量，使用指定的持续时间和增量。
+
+    参数:
+    - initial_volume (float): 起始音量级别。
+    - target_volume (float): 目标音量级别。
+    - duration (int): 完成音量变化的总时间（秒）。
+    - increment (int): 每次音量变化的时间间隔（秒）。
+    """
     steps = int(duration / increment)
     step_size = (target_volume - initial_volume) / steps
 
