@@ -11,7 +11,7 @@ def play_video(video_url):
     # 在默认的网络浏览器中打开视频
     subprocess.run(['start', video_url], check=True, shell=True)
 
-    #等待20秒打开网页
+    #等待5秒打开网页
     time.sleep(5) 
 
     #按下全屏按键F
